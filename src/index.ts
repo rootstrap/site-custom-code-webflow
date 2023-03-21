@@ -1,1 +1,1 @@
-alert('This alert comes from the CDN')
+alert('This alert comes from the CDN.')
