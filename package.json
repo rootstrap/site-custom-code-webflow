@@ -1,0 +1,29 @@
+{
+  "name": "site-custom-code-webflow",
+  "version": "0.1.0",
+  "description": "Custom code for the rootstrap site. (https://rootstrap.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve",
+    "build": "node builder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rootstrap/site-custom-code-webflow.git"
+  },
+  "keywords": [],
+  "author": "Rootstrap Inc.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rootstrap/site-custom-code-webflow/issues"
+  },
+  "homepage": "https://github.com/rootstrap/site-custom-code-webflow#readme",
+  "devDependencies": {
+    "esbuild": "^0.17.12",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "glob": "^9.3.1"
+  }
+}
