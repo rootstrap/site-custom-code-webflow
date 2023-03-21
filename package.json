@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "serve",
-    "build": "node builder.js"
+    "clean": "rimraf ./dist/*",
+    "build": "npm run clean && node builder.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
   "homepage": "https://github.com/rootstrap/site-custom-code-webflow#readme",
   "devDependencies": {
     "esbuild": "^0.17.12",
+    "husky": "^8.0.3",
+    "rimraf": "^4.4.0",
     "serve": "^14.2.0"
   },
   "dependencies": {

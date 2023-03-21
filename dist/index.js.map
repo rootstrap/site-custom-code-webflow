@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["alert('This alert comes from the CDN')"],
+  "mappings": "MAAA,MAAM,+BAA+B",
+  "names": []
+}

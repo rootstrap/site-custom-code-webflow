@@ -1,0 +1,1 @@
+alert('This alert comes from the CDN')
