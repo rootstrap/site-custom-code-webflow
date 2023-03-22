@@ -1,9 +1,9 @@
 import { colors } from "./colors"
 
-const staffCheckbox = <HTMLInputElement>document.getElementById('checkbox-pill-staff')
-const staffPill = <HTMLInputElement>document.getElementById('pill-checkbox-staff')
-const staffButtonHover = <HTMLInputElement>document.getElementById('button-hover-staff')
-const staffPillLabel = <HTMLInputElement>document.getElementById('pill-list-label-staff')
+const staffCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-staff') as HTMLInputElement
+const staffPill: HTMLElement = document.getElementById('pill-checkbox-staff')
+const staffButtonHover: HTMLElement = document.getElementById('button-hover-staff')
+const staffPillLabel: HTMLElement = document.getElementById('pill-list-label-staff')
 
 function isLightThemed() {
 	return staffPill.className.includes('__light')

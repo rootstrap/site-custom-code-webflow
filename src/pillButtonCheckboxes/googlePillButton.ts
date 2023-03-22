@@ -1,9 +1,9 @@
 import { colors } from "./colors"
 
-const googleCheckbox = <HTMLInputElement>document.getElementById('checkbox-pill-google')
-const googlePill = <HTMLInputElement>document.getElementById('pill-checkbox-google')
-const googleButtonHover = <HTMLInputElement>document.getElementById('button-hover-google')
-const googlePillLabel = <HTMLInputElement>document.getElementById('pill-list-label-google')
+const googleCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-google') as HTMLInputElement
+const googlePill: HTMLElement = document.getElementById('pill-checkbox-google')
+const googleButtonHover: HTMLElement = document.getElementById('button-hover-google')
+const googlePillLabel: HTMLElement = document.getElementById('pill-list-label-google')
 
 function isLightThemed() {
 	return googlePill.className.includes('__light')

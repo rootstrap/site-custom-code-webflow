@@ -1,9 +1,9 @@
 import { colors } from './colors'
 
-const softwareCheckbox = <HTMLInputElement>document.getElementById('checkbox-pill-software')
-const softwarePill = <HTMLInputElement>document.getElementById('pill-checkbox-software')
-const softwareButtonHover = <HTMLInputElement>document.getElementById('button-hover-software')
-const softwarePillLabel = <HTMLInputElement>document.getElementById('pill-list-label-software')
+const softwareCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-software') as HTMLInputElement
+const softwarePill: HTMLElement = document.getElementById('pill-checkbox-software')
+const softwareButtonHover: HTMLElement = document.getElementById('button-hover-software')
+const softwarePillLabel: HTMLElement = document.getElementById('pill-list-label-software')
 
 function isLightThemed() {
 	return softwarePill.className.includes('__light')

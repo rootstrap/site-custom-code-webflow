@@ -1,9 +1,9 @@
 import { colors } from './colors'
 
-const productCheckbox = <HTMLInputElement>document.getElementById('checkbox-pill-product')
-const productPill = <HTMLInputElement>document.getElementById('pill-checkbox-product')
-const productButtonHover = <HTMLInputElement>document.getElementById('button-hover-product')
-const productPillLabel = <HTMLInputElement>document.getElementById('pill-list-label-product')
+const productCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-product') as HTMLInputElement
+const productPill: HTMLElement = document.getElementById('pill-checkbox-product')
+const productButtonHover: HTMLElement = document.getElementById('button-hover-product')
+const productPillLabel: HTMLElement = document.getElementById('pill-list-label-product')
 
 function isLightThemed() {
 	return productPill.className.includes('__light')

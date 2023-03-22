@@ -1,9 +1,9 @@
 import { colors } from "./colors"
 
-const referalCheckbox = <HTMLInputElement>document.getElementById('checkbox-pill-referal')
-const referalPill = <HTMLInputElement>document.getElementById('pill-checkbox-referal')
-const referalButtonHover = <HTMLInputElement>document.getElementById('button-hover-referal')
-const referalPillLabel = <HTMLInputElement>document.getElementById('pill-list-label-referal')
+const referalCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-referal') as HTMLInputElement
+const referalPill: HTMLElement = document.getElementById('pill-checkbox-referal')
+const referalButtonHover: HTMLElement = document.getElementById('button-hover-referal')
+const referalPillLabel: HTMLElement = document.getElementById('pill-list-label-referal')
 
 function isLightThemed() {
 	return referalPill.className.includes('__light')
