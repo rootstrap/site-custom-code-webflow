@@ -8,7 +8,6 @@ import {
     displayEmailFormatError
 } from "../formInputs/emailInput";
 const elementToScroll: HTMLElement = document.querySelector('#what-to-do-checkbox-group')
-const form: HTMLFormElement = document.querySelector('.c-contact-form')
 const submitButton: HTMLFormElement = document.querySelector('#submit-button');
 
 submitButton.addEventListener('click', (event: Event) => {
