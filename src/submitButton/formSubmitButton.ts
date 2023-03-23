@@ -7,13 +7,18 @@ import {
     displayEmailRequiredError,
     displayEmailFormatError
 } from "../formInputs/emailInput";
+import { isEmail } from "class-validator";
 const submitButton: HTMLFormElement = document.querySelector('#submit-button');
 
 submitButton.addEventListener('click', (event: Event) => {
     const headerOffset = 150
 
-    if (emailInput.value === "") displayEmailRequiredError()
-    if (emailInput.value === "") displayEmailFormatError
+    if (emailInput.value === "") {
+        displayEmailRequiredError()
+    } else if (!isEmail(emailInput.value)) {
+        displayEmailFormatError()
+    }
+
     if (nameInput.value === "") displayNameRequiredError()
     if (projectInput.value === "") displayProjectRequiredError()
 
