@@ -8,6 +8,7 @@
     "serve": "serve",
     "clean": "rimraf ./dist/*",
     "build": "npm run clean && node builder.js",
+    "start": "npm run build && npm run serve",
     "prepare": "husky install"
   },
   "repository": {
@@ -28,6 +29,7 @@
     "serve": "^14.2.0"
   },
   "dependencies": {
+    "class-validator": "^0.14.0",
     "glob": "^9.3.1"
   }
 }
