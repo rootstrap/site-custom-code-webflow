@@ -1,3 +1,4 @@
+import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
 
 const googleCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-google') as HTMLInputElement
@@ -36,6 +37,7 @@ const googleThemeObserver = new MutationObserver((mutationList: unknown, _observ
 googleThemeObserver.observe(googlePill, { attributes: true })
 
 googleCheckbox.addEventListener('change', function () {
+	hideSocialsCheckboxError()
 	if (this.checked) {
 		if (isLightThemed()) {
 			googlePill.style.backgroundColor = colors.lightSelectedBackgroundColor

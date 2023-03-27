@@ -1,3 +1,4 @@
+import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
 
 const referalCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-referal') as HTMLInputElement
@@ -36,6 +37,7 @@ const referalThemeObserver = new MutationObserver((mutationList: unknown, _obser
 referalThemeObserver.observe(referalPill, { attributes: true })
 
 referalCheckbox.addEventListener('change', function () {
+	hideSocialsCheckboxError()
 	if (this.checked) {
 		if (isLightThemed()) {
 			referalPill.style.backgroundColor = colors.lightSelectedBackgroundColor

@@ -8,6 +8,7 @@ import {
     displayEmailFormatError
 } from "../formInputs/emailInput";
 import { isEmail } from "class-validator";
+import { checkboxes, displaySocialCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
 const submitButton: HTMLFormElement = document.querySelector('#submit-button');
 
 submitButton.addEventListener('click', (event: Event) => {
@@ -21,6 +22,10 @@ submitButton.addEventListener('click', (event: Event) => {
 
     if (nameInput.value === "") displayNameRequiredError()
     if (projectInput.value === "") displayProjectRequiredError()
+
+    if (checkboxes.every(ch => !ch.checked)) {
+        displaySocialCheckboxError()
+    }
 
     if (isProjectErrorDisplayed) {
         const projectInputPosition = projectInput.getBoundingClientRect().top
@@ -47,6 +52,17 @@ submitButton.addEventListener('click', (event: Event) => {
     if (isEmailFormatErrorDisplayed || isEmailRequiredErrorDisplayed) {
         const emailInputPosition = nameInput.getBoundingClientRect().top
         const offsetPosition = emailInputPosition + window.pageYOffset - headerOffset;
+        event.preventDefault()
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        })
+        return;
+    }
+
+    if (isSocialsCheckboxErrorDisplayed) {
+        const socialsCheckboxPosition = socialsCheckboxGroup.getBoundingClientRect().top
+        const offsetPosition = socialsCheckboxPosition + window.pageYOffset - headerOffset;
         event.preventDefault()
         window.scrollTo({
             top: offsetPosition,
