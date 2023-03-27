@@ -1,6 +1,6 @@
 export const socialsCheckboxGroup: HTMLElement = document.querySelector('.cc-socials-checkbox-group')
 export let isSocialsCheckboxErrorDisplayed: boolean = false;
-export const checkboxes: HTMLInputElement[] = [
+const pills: HTMLInputElement[] = [
     document.querySelector('#pill-checkbox-google'),
     document.querySelector('#pill-checkbox-social'),
     document.querySelector('#pill-checkbox-friend'),
@@ -16,20 +16,18 @@ const socialsRequiredErrorLineHeight: string = socialsRequiredErrorStyles.lineHe
 
 
 export const displaySocialCheckboxError = () => {
-    if (!isSocialsCheckboxErrorDisplayed) {
-        socialsCheckboxGroup.style.marginTop = `${Number(socialsCheckboxGroupMarginTop) - Number(socialsRequiredErrorLineHeight)}px`
-        socialsRequiredErrorMessage.style.display = 'block'
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].style.border = '1px solid #cb0b0b'
-        }
-        isSocialsCheckboxErrorDisplayed = true
+    socialsCheckboxGroup.style.marginTop = `${Number(socialsCheckboxGroupMarginTop) - Number(socialsRequiredErrorLineHeight)}px`
+    socialsRequiredErrorMessage.style.display = 'block'
+    for (let i = 0; i < pills.length; i++) {
+        pills[i].style.border = '1px solid #cb0b0b'
     }
+    isSocialsCheckboxErrorDisplayed = true
 }
 
 export const hideSocialsCheckboxError = () => {
     socialsRequiredErrorMessage.style.display = 'none'
-    for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].style.border = '1px solid #9e9e9e'
+    for (let i = 0; i < pills.length; i++) {
+        pills[i].style.border = '1px solid #9e9e9e'
     }
     socialsCheckboxGroup.style.marginTop = `${socialsCheckboxGroupMarginTop}px`
     isSocialsCheckboxErrorDisplayed = false

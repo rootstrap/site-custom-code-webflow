@@ -8,8 +8,16 @@ import {
     displayEmailFormatError
 } from "../formInputs/emailInput";
 import { isEmail } from "class-validator";
-import { checkboxes, displaySocialCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
-const submitButton: HTMLFormElement = document.querySelector('#submit-button');
+import { displaySocialCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
+
+const submitButton: HTMLFormElement = document.querySelector('#submit-button')
+const checkboxes: HTMLInputElement[] = [
+    document.querySelector('#checkbox-pill-social'),
+    document.querySelector('#checkbox-pill-google'),
+    document.querySelector('#checkbox-pill-friend'),
+    document.querySelector('#checkbox-pill-referal'),
+    document.querySelector('#checkbox-pill-other-social'),
+]
 
 submitButton.addEventListener('click', (event: Event) => {
     const headerOffset = 150
