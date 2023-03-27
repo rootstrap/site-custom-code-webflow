@@ -1,3 +1,4 @@
+import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
 
 const otherSocialCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-other-social') as HTMLInputElement
@@ -36,6 +37,7 @@ const otherSocialThemeObserver = new MutationObserver((mutationList: unknown, _o
 otherSocialThemeObserver.observe(otherSocialPill, { attributes: true })
 
 otherSocialCheckbox.addEventListener('change', function () {
+	hideSocialsCheckboxError()
 	if (this.checked) {
 		if (isLightThemed()) {
 			otherSocialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
