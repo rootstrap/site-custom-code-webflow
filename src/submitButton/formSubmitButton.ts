@@ -23,13 +23,7 @@ submitButton.addEventListener('click', (event: Event) => {
     if (nameInput.value === "") displayNameRequiredError()
     if (projectInput.value === "") displayProjectRequiredError()
 
-    if (
-        !checkboxes[0].checked &&
-        !checkboxes[1].checked &&
-        !checkboxes[2].checked &&
-        !checkboxes[3].checked &&
-        !checkboxes[4].checked
-    ) {
+    if (checkboxes.every(ch => !ch.checked)) {
         displaySocialCheckboxError()
     }
 
