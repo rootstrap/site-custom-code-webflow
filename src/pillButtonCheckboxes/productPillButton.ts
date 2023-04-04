@@ -1,4 +1,7 @@
 import { colors } from './colors'
+import { unselectOtherCheckbox } from './otherPillButton'
+import { unselectSoftwareCheckbox } from './softwarePillButton'
+import { unselectStaffCheckbox } from './staffPillButton'
 
 const productCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-product') as HTMLInputElement
 const productPill: HTMLElement = document.getElementById('pill-checkbox-product')
@@ -36,7 +39,11 @@ const productThemeObserver = new MutationObserver((mutationList: unknown, observ
 productThemeObserver.observe(productPill, { attributes: true })
 
 productPill.addEventListener('click', () => {
-
+	if (!productCheckbox.checked) {
+		selectProductCheckbox()
+	} else {
+		unselectProductCheckbox()
+	}
 })
 
 productPill.addEventListener('mouseover', function () {
@@ -55,27 +62,31 @@ productPill.addEventListener('mouseover', function () {
 	}
 })
 
-export const toggleProductCheckbox = () => {
-	productCheckbox.checked = !productCheckbox.checked
-	if (productCheckbox.checked) {
-		if (isLightThemed()) {
-			productPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			productPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			productPillLabel.style.color = colors.darkSelectedTextColor
-			productPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+export const selectProductCheckbox = () => {
+	unselectStaffCheckbox()
+	unselectSoftwareCheckbox()
+	unselectOtherCheckbox()
+	productCheckbox.checked = true
+	if (isLightThemed()) {
+		productPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		productPillLabel.style.color = colors.lightSelectedTextColor
 	} else {
-		if (isLightThemed()) {
-			productPill.style.backgroundColor = colors.lightBackgroundColor
-			productButtonHover.style.backgroundColor = colors.lightHoverColor
-			productPillLabel.style.color = colors.lightTextColor
-		} else {
-			productPill.style.backgroundColor = colors.darkBackgroundColor
-			productButtonHover.style.backgroundColor = colors.darkHoverColor
-			productPillLabel.style.color = colors.darkTextColor
-		}
+		productPillLabel.style.color = colors.darkSelectedTextColor
+		productPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectProductCheckbox = () => {
+	productCheckbox.checked = false
+	if (isLightThemed()) {
+		productPill.style.backgroundColor = colors.lightBackgroundColor
+		productButtonHover.style.backgroundColor = colors.lightHoverColor
+		productPillLabel.style.color = colors.lightTextColor
+	} else {
+		productPill.style.backgroundColor = colors.darkBackgroundColor
+		productButtonHover.style.backgroundColor = colors.darkHoverColor
+		productPillLabel.style.color = colors.darkTextColor
 	}
 }

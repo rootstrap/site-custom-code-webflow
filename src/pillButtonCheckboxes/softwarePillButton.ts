@@ -1,4 +1,7 @@
 import { colors } from './colors'
+import { unselectOtherCheckbox } from './otherPillButton'
+import { unselectProductCheckbox } from './productPillButton'
+import { unselectStaffCheckbox } from './staffPillButton'
 
 const softwareCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-software') as HTMLInputElement
 const softwarePill: HTMLElement = document.getElementById('pill-checkbox-software')
@@ -36,27 +39,11 @@ const softwareThemeObserver = new MutationObserver((mutationList: unknown, _obse
 softwareThemeObserver.observe(softwarePill, { attributes: true })
 
 softwarePill.addEventListener('click', function () {
-	softwareCheckbox.checked = !softwareCheckbox.checked
-	if (softwareCheckbox.checked) {
-		if (isLightThemed()) {
-			softwarePill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			softwareButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			softwarePillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			softwarePillLabel.style.color = colors.darkSelectedTextColor
-			softwarePill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			softwareButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+
+	if (!softwareCheckbox.checked) {
+		selectSoftwareCheckbox()
 	} else {
-		if (isLightThemed()) {
-			softwarePill.style.backgroundColor = colors.lightBackgroundColor
-			softwareButtonHover.style.backgroundColor = colors.lightHoverColor
-			softwarePillLabel.style.color = colors.lightTextColor
-		} else {
-			softwarePill.style.backgroundColor = colors.darkBackgroundColor
-			softwareButtonHover.style.backgroundColor = colors.darkHoverColor
-			softwarePillLabel.style.color = colors.darkTextColor
-		}
+		unselectSoftwareCheckbox()
 	}
 });
 
@@ -75,3 +62,32 @@ softwarePill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+export const selectSoftwareCheckbox = () => {
+	unselectProductCheckbox()
+	unselectOtherCheckbox()
+	unselectStaffCheckbox()
+	softwareCheckbox.checked = true
+	if (isLightThemed()) {
+		softwarePill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		softwareButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		softwarePillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		softwarePillLabel.style.color = colors.darkSelectedTextColor
+		softwarePill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		softwareButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectSoftwareCheckbox = () => {
+	softwareCheckbox.checked = false
+	if (isLightThemed()) {
+		softwarePill.style.backgroundColor = colors.lightBackgroundColor
+		softwareButtonHover.style.backgroundColor = colors.lightHoverColor
+		softwarePillLabel.style.color = colors.lightTextColor
+	} else {
+		softwarePill.style.backgroundColor = colors.darkBackgroundColor
+		softwareButtonHover.style.backgroundColor = colors.darkHoverColor
+		softwarePillLabel.style.color = colors.darkTextColor
+	}
+}

@@ -1,4 +1,7 @@
 import { colors } from "./colors"
+import { unselectOtherCheckbox } from "./otherPillButton"
+import { unselectProductCheckbox } from "./productPillButton"
+import { unselectSoftwareCheckbox } from "./softwarePillButton"
 
 const staffCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-staff') as HTMLInputElement
 const staffPill: HTMLElement = document.getElementById('pill-checkbox-staff')
@@ -36,27 +39,10 @@ const staffThemeObserver = new MutationObserver((mutationList: unknown, observer
 staffThemeObserver.observe(staffPill, { attributes: true })
 
 staffPill.addEventListener('click', function () {
-	staffCheckbox.checked = !staffCheckbox.checked
-	if (staffCheckbox.checked) {
-		if (isLightThemed()) {
-			staffPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			staffButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			staffPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			staffPillLabel.style.color = colors.darkSelectedTextColor
-			staffPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			staffButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+	if (!staffCheckbox.checked) {
+		selectStaffCheckbox()
 	} else {
-		if (isLightThemed()) {
-			staffPill.style.backgroundColor = colors.lightBackgroundColor
-			staffButtonHover.style.backgroundColor = colors.lightHoverColor
-			staffPillLabel.style.color = colors.lightTextColor
-		} else {
-			staffPill.style.backgroundColor = colors.darkBackgroundColor
-			staffButtonHover.style.backgroundColor = colors.darkHoverColor
-			staffPillLabel.style.color = colors.darkTextColor
-		}
+		unselectStaffCheckbox()
 	}
 });
 
@@ -75,3 +61,32 @@ staffPill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+export const selectStaffCheckbox = () => {
+	unselectProductCheckbox()
+	unselectOtherCheckbox()
+	unselectSoftwareCheckbox()
+	staffCheckbox.checked = true
+	if (isLightThemed()) {
+		staffPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		staffButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		staffPillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		staffPillLabel.style.color = colors.darkSelectedTextColor
+		staffPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		staffButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectStaffCheckbox = () => {
+	staffCheckbox.checked = false
+	if (isLightThemed()) {
+		staffPill.style.backgroundColor = colors.lightBackgroundColor
+		staffButtonHover.style.backgroundColor = colors.lightHoverColor
+		staffPillLabel.style.color = colors.lightTextColor
+	} else {
+		staffPill.style.backgroundColor = colors.darkBackgroundColor
+		staffButtonHover.style.backgroundColor = colors.darkHoverColor
+		staffPillLabel.style.color = colors.darkTextColor
+	}
+}
