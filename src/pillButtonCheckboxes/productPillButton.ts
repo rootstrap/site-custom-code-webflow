@@ -35,8 +35,29 @@ const productThemeObserver = new MutationObserver((mutationList: unknown, observ
 
 productThemeObserver.observe(productPill, { attributes: true })
 
-productCheckbox.addEventListener('change', function () {
-	if (this.checked) {
+productPill.addEventListener('click', () => {
+
+})
+
+productPill.addEventListener('mouseover', function () {
+	if (productCheckbox.checked) {
+		if (isLightThemed()) {
+			productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		} else {
+			productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+		}
+	} else {
+		if (isLightThemed()) {
+			productButtonHover.style.backgroundColor = colors.lightHoverColor
+		} else {
+			productButtonHover.style.backgroundColor = colors.darkHoverColor
+		}
+	}
+})
+
+export const toggleProductCheckbox = () => {
+	productCheckbox.checked = !productCheckbox.checked
+	if (productCheckbox.checked) {
 		if (isLightThemed()) {
 			productPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
@@ -57,20 +78,4 @@ productCheckbox.addEventListener('change', function () {
 			productPillLabel.style.color = colors.darkTextColor
 		}
 	}
-});
-
-productPill.addEventListener('mouseover', function () {
-	if (productCheckbox.checked) {
-		if (isLightThemed()) {
-			productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-		} else {
-			productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
-	} else {
-		if (isLightThemed()) {
-			productButtonHover.style.backgroundColor = colors.lightHoverColor
-		} else {
-			productButtonHover.style.backgroundColor = colors.darkHoverColor
-		}
-	}
-})
+}

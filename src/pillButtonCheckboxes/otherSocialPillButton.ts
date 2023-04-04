@@ -36,9 +36,10 @@ const otherSocialThemeObserver = new MutationObserver((mutationList: unknown, _o
 
 otherSocialThemeObserver.observe(otherSocialPill, { attributes: true })
 
-otherSocialCheckbox.addEventListener('change', function () {
+otherSocialPill.addEventListener('click', function () {
+	otherSocialCheckbox.checked = !otherSocialCheckbox.checked
 	hideSocialsCheckboxError()
-	if (this.checked) {
+	if (otherSocialCheckbox.checked) {
 		if (isLightThemed()) {
 			otherSocialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			otherSocialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

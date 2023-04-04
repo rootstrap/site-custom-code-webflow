@@ -36,9 +36,11 @@ const socialThemeObserver = new MutationObserver((mutationList: unknown, _observ
 
 socialThemeObserver.observe(socialPill, { attributes: true })
 
-socialCheckbox.addEventListener('change', function () {
+socialPill.addEventListener('click', function () {
+	console.log(socialCheckbox.checked)
+	socialCheckbox.checked = !socialCheckbox.checked
 	hideSocialsCheckboxError()
-	if (this.checked) {
+	if (socialCheckbox.checked) {
 		if (isLightThemed()) {
 			socialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			socialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

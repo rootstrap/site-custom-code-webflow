@@ -36,9 +36,10 @@ const googleThemeObserver = new MutationObserver((mutationList: unknown, _observ
 
 googleThemeObserver.observe(googlePill, { attributes: true })
 
-googleCheckbox.addEventListener('change', function () {
+googlePill.addEventListener('click', function () {
+	googleCheckbox.checked = !googleCheckbox.checked
 	hideSocialsCheckboxError()
-	if (this.checked) {
+	if (googleCheckbox.checked) {
 		if (isLightThemed()) {
 			googlePill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			googleButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

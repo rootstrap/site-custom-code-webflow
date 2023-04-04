@@ -35,8 +35,9 @@ const staffThemeObserver = new MutationObserver((mutationList: unknown, observer
 
 staffThemeObserver.observe(staffPill, { attributes: true })
 
-staffCheckbox.addEventListener('change', function () {
-	if (this.checked) {
+staffPill.addEventListener('click', function () {
+	staffCheckbox.checked = !staffCheckbox.checked
+	if (staffCheckbox.checked) {
 		if (isLightThemed()) {
 			staffPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			staffButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

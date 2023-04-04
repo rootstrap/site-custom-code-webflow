@@ -35,8 +35,9 @@ const otherThemeObserver = new MutationObserver((mutationList: unknown, observer
 
 otherThemeObserver.observe(otherPill, { attributes: true })
 
-otherCheckbox.addEventListener('change', function () {
-	if (this.checked) {
+otherPill.addEventListener('click', function () {
+	otherCheckbox.checked = !otherCheckbox.checked
+	if (otherCheckbox.checked) {
 		if (isLightThemed()) {
 			otherPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			otherButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

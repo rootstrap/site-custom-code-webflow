@@ -4,7 +4,7 @@ const pills: HTMLInputElement[] = [
     document.querySelector('#pill-checkbox-google'),
     document.querySelector('#pill-checkbox-social'),
     document.querySelector('#pill-checkbox-friend'),
-    document.querySelector('#pill-checkbox-referal'),
+    document.querySelector('#pill-checkbox-referral'),
     document.querySelector('#pill-checkbox-other-social'),
 ]
 const socialsRequiredErrorMessage: HTMLElement = document.querySelector('.cc-socials-required-error')

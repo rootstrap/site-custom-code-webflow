@@ -35,8 +35,9 @@ const softwareThemeObserver = new MutationObserver((mutationList: unknown, _obse
 
 softwareThemeObserver.observe(softwarePill, { attributes: true })
 
-softwareCheckbox.addEventListener('change', function () {
-	if (this.checked) {
+softwarePill.addEventListener('click', function () {
+	softwareCheckbox.checked = !softwareCheckbox.checked
+	if (softwareCheckbox.checked) {
 		if (isLightThemed()) {
 			softwarePill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			softwareButtonHover.style.backgroundColor = colors.lightSelectedHoverColor

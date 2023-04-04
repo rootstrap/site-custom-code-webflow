@@ -36,9 +36,10 @@ const friendThemeObserver = new MutationObserver((mutationList: unknown, _observ
 
 friendThemeObserver.observe(friendPill, { attributes: true })
 
-friendCheckbox.addEventListener('change', function () {
+friendPill.addEventListener('click', function () {
+	friendCheckbox.checked = !friendCheckbox.checked
 	hideSocialsCheckboxError()
-	if (this.checked) {
+	if (friendCheckbox.checked) {
 		if (isLightThemed()) {
 			friendPill.style.backgroundColor = colors.lightSelectedBackgroundColor
 			friendButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
