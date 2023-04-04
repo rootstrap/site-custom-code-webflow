@@ -1,6 +1,8 @@
 import { isEmail } from "class-validator"
 
-export const emailInput: HTMLInputElement = document.querySelector('.cc-email-input') as HTMLInputElement
+export const emailInput: HTMLInputElement = document.querySelector('.email-input')
+const emailInputUnderline: HTMLElement = document.querySelector('.email-underline')
+const emailInputContainer: HTMLElement = document.querySelector('.email-input-container')
 export let isEmailRequiredErrorDisplayed: boolean = false
 export let isEmailFormatErrorDisplayed: boolean = false
 const emailRequiredErrorMessage: HTMLElement = document.querySelector('.cc-email-required-error')
@@ -13,32 +15,32 @@ const emailFormatErrorStyles: CSSStyleDeclaration = getComputedStyle(emailFormat
 const socialCheckboxGroupMarginTop: string = socialCheckboxGroupStyles.marginTop.substring(0, socialCheckboxGroupStyles.marginTop.length - 2)
 const emailRequiredErrorLineHeight: string = emailRequiredErrorStyles.lineHeight.substring(0, emailRequiredErrorStyles.lineHeight.length - 2)
 const emailFormatErrorLineHeight: string = emailFormatErrorStyles.lineHeight.substring(0, emailFormatErrorStyles.lineHeight.length - 2)
-
-emailInput.style.border = '1px solid transparent'
-emailInput.style.borderBottom = '1px solid #7b7b7b'
+emailInputUnderline.style.maxWidth = `${emailInputContainer.getBoundingClientRect().width}px`
 
 export const displayEmailRequiredError = (): void => {
 	if (!isEmailRequiredErrorDisplayed) {
+		emailInputUnderline.style.width = '100%'
+		emailInputContainer.style.marginBottom = "0px"
 		socialCheckboxGroup.style.marginTop = `${Number(socialCheckboxGroupMarginTop) - Number(emailRequiredErrorLineHeight)}px`
 		emailRequiredErrorMessage.style.display = 'block'
-		emailInput.style.borderBottom = '1px solid #cb0b0b'
+		emailInputUnderline.style.backgroundColor = '#cb0b0b'
 		isEmailRequiredErrorDisplayed = true
 	}
 }
 
 export const displayEmailFormatError = (): void => {
 	if (!isEmailFormatErrorDisplayed) {
+		emailInputContainer.style.marginBottom = '0px'
 		socialCheckboxGroup.style.marginTop = `${Number(socialCheckboxGroupMarginTop) - Number(emailFormatErrorLineHeight)}px`
 		emailFormatErrorMessage.style.display = 'block'
-		emailInput.style.borderBottom = '1px solid #cb0b0b'
+		emailInputUnderline.style.backgroundColor = '#cb0b0b'
 		isEmailFormatErrorDisplayed = true
 	}
 }
 
 const hideEmailRequiredError = (): void => {
 	if (isEmailRequiredErrorDisplayed) {
-		emailInput.style.border = '1px solid transparent'
-		emailInput.style.borderBottom = '1px solid #7b7b7b'
+		emailInputUnderline.style.backgroundColor = "#7b7b7b"
 		socialCheckboxGroup.style.marginTop = `${socialCheckboxGroupMarginTop}px`
 		emailRequiredErrorMessage.style.display = 'none'
 		isEmailRequiredErrorDisplayed = false
@@ -47,17 +49,26 @@ const hideEmailRequiredError = (): void => {
 
 const hideEmailFormatError = (): void => {
 	if (isEmailFormatErrorDisplayed) {
-		emailInput.style.border = '1px solid transparent'
-		emailInput.style.borderBottom = '1px solid #7b7b7b'
+		emailInputUnderline.style.backgroundColor = "#7b7b7b"
 		socialCheckboxGroup.style.marginTop = `${socialCheckboxGroupMarginTop}px`
 		emailFormatErrorMessage.style.display = 'none'
 		isEmailFormatErrorDisplayed = false
 	}
 }
 
+emailInput.addEventListener('focus', () => {
+	if (emailInput.value === "") {
+		emailInput.placeholder = ""
+	}
+})
+
 emailInput.addEventListener('blur', () => {
 	if (emailInput.value === '') {
+		emailInput.placeholder = "Your email*"
+		emailInputUnderline.style.width = '100%'
 		displayEmailRequiredError()
+	} else if (!isEmail(emailInput.value)) {
+		displayEmailFormatError()
 	}
 })
 
@@ -67,6 +78,11 @@ emailInput.addEventListener('input', () => {
 		displayEmailRequiredError()
 	} else {
 		hideEmailRequiredError()
+		const underlineWidth = Number(emailInputUnderline.style.width.substring(0, emailInputUnderline.style.width.length - 2))
+		if (underlineWidth < emailInputContainer.getBoundingClientRect().width) {
+			const fontSize = Number(getComputedStyle(emailInput).fontSize.substring(0, getComputedStyle(emailInput).fontSize.length - 2))
+			emailInputUnderline.style.width = `${emailInput.value.length * fontSize * 0.55}px`
+		}
 		if (!isEmail(emailInput.value)) {
 			displayEmailFormatError()
 		} else {
