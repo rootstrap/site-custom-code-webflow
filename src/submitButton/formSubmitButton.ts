@@ -15,7 +15,7 @@ const checkboxes: HTMLInputElement[] = [
     document.querySelector('#checkbox-pill-social'),
     document.querySelector('#checkbox-pill-google'),
     document.querySelector('#checkbox-pill-friend'),
-    document.querySelector('#checkbox-pill-referal'),
+    document.querySelector('#checkbox-pill-referral'),
     document.querySelector('#checkbox-pill-other-social'),
 ]
 
