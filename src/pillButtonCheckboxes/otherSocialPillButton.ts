@@ -1,5 +1,9 @@
 import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
+import { unselectFriendCheckbox } from "./friendPillButton"
+import { unselectGoogleCheckbox } from "./googlePillButton"
+import { unselectReferralCheckbox } from "./referralPillButton"
+import { unselectSocialCheckbox } from "./socialMediaPillButton"
 
 const otherSocialCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-other-social') as HTMLInputElement
 const otherSocialPill: HTMLElement = document.getElementById('pill-checkbox-other-social')
@@ -37,28 +41,11 @@ const otherSocialThemeObserver = new MutationObserver((mutationList: unknown, _o
 otherSocialThemeObserver.observe(otherSocialPill, { attributes: true })
 
 otherSocialPill.addEventListener('click', function () {
-	otherSocialCheckbox.checked = !otherSocialCheckbox.checked
 	hideSocialsCheckboxError()
-	if (otherSocialCheckbox.checked) {
-		if (isLightThemed()) {
-			otherSocialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			otherSocialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			otherSocialPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			otherSocialPillLabel.style.color = colors.darkSelectedTextColor
-			otherSocialPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			otherSocialButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+	if (!otherSocialCheckbox.checked) {
+		selectOtherSocialCheckbox()
 	} else {
-		if (isLightThemed()) {
-			otherSocialPill.style.backgroundColor = colors.lightBackgroundColor
-			otherSocialButtonHover.style.backgroundColor = colors.lightHoverColor
-			otherSocialPillLabel.style.color = colors.lightTextColor
-		} else {
-			otherSocialPill.style.backgroundColor = colors.darkBackgroundColor
-			otherSocialButtonHover.style.backgroundColor = colors.darkHoverColor
-			otherSocialPillLabel.style.color = colors.darkTextColor
-		}
+		unselectOtherSocialCheckbox()
 	}
 });
 
@@ -77,3 +64,34 @@ otherSocialPill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+const selectOtherSocialCheckbox = () => {
+	otherSocialCheckbox.checked = true
+	unselectGoogleCheckbox()
+	unselectFriendCheckbox()
+	unselectSocialCheckbox()
+	unselectReferralCheckbox()
+	if (isLightThemed()) {
+		otherSocialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		otherSocialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		otherSocialPillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		otherSocialPillLabel.style.color = colors.darkSelectedTextColor
+		otherSocialPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		otherSocialButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectOtherSocialCheckbox = () => {
+	if (!otherSocialCheckbox.checked) return
+	otherSocialCheckbox.checked = false
+	if (isLightThemed()) {
+		otherSocialPill.style.backgroundColor = colors.lightBackgroundColor
+		otherSocialButtonHover.style.backgroundColor = colors.lightHoverColor
+		otherSocialPillLabel.style.color = colors.lightTextColor
+	} else {
+		otherSocialPill.style.backgroundColor = colors.darkBackgroundColor
+		otherSocialButtonHover.style.backgroundColor = colors.darkHoverColor
+		otherSocialPillLabel.style.color = colors.darkTextColor
+	}
+}

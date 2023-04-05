@@ -1,5 +1,9 @@
 import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
+import { unselectFriendCheckbox } from "./friendPillButton"
+import { unselectOtherSocialCheckbox } from "./otherSocialPillButton"
+import { unselectReferralCheckbox } from "./referralPillButton"
+import { unselectSocialCheckbox } from "./socialMediaPillButton"
 
 const googleCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-google') as HTMLInputElement
 const googlePill: HTMLElement = document.getElementById('pill-checkbox-google')
@@ -37,28 +41,11 @@ const googleThemeObserver = new MutationObserver((mutationList: unknown, _observ
 googleThemeObserver.observe(googlePill, { attributes: true })
 
 googlePill.addEventListener('click', function () {
-	googleCheckbox.checked = !googleCheckbox.checked
 	hideSocialsCheckboxError()
-	if (googleCheckbox.checked) {
-		if (isLightThemed()) {
-			googlePill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			googleButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			googlePillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			googlePillLabel.style.color = colors.darkSelectedTextColor
-			googlePill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			googleButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+	if (!googleCheckbox.checked) {
+		selectGoogleCheckbox()
 	} else {
-		if (isLightThemed()) {
-			googlePill.style.backgroundColor = colors.lightBackgroundColor
-			googleButtonHover.style.backgroundColor = colors.lightHoverColor
-			googlePillLabel.style.color = colors.lightTextColor
-		} else {
-			googlePill.style.backgroundColor = colors.darkBackgroundColor
-			googleButtonHover.style.backgroundColor = colors.darkHoverColor
-			googlePillLabel.style.color = colors.darkTextColor
-		}
+		unselectGoogleCheckbox()
 	}
 });
 
@@ -77,3 +64,34 @@ googlePill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+const selectGoogleCheckbox = () => {
+	googleCheckbox.checked = true
+	unselectFriendCheckbox()
+	unselectOtherSocialCheckbox()
+	unselectSocialCheckbox()
+	unselectReferralCheckbox()
+	if (isLightThemed()) {
+		googlePill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		googleButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		googlePillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		googlePillLabel.style.color = colors.darkSelectedTextColor
+		googlePill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		googleButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectGoogleCheckbox = () => {
+	if (!googleCheckbox.checked) return
+	googleCheckbox.checked = false
+	if (isLightThemed()) {
+		googlePill.style.backgroundColor = colors.lightBackgroundColor
+		googleButtonHover.style.backgroundColor = colors.lightHoverColor
+		googlePillLabel.style.color = colors.lightTextColor
+	} else {
+		googlePill.style.backgroundColor = colors.darkBackgroundColor
+		googleButtonHover.style.backgroundColor = colors.darkHoverColor
+		googlePillLabel.style.color = colors.darkTextColor
+	}
+}

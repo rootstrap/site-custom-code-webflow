@@ -62,7 +62,7 @@ otherPill.addEventListener('mouseover', function () {
 	}
 })
 
-export const selectOtherCheckbox = () => {
+const selectOtherCheckbox = () => {
 	unselectProductCheckbox()
 	unselectSoftwareCheckbox()
 	unselectStaffCheckbox()
@@ -79,6 +79,7 @@ export const selectOtherCheckbox = () => {
 }
 
 export const unselectOtherCheckbox = () => {
+	if (!otherCheckbox.checked) return
 	otherCheckbox.checked = false
 	if (isLightThemed()) {
 		otherPill.style.backgroundColor = colors.lightBackgroundColor

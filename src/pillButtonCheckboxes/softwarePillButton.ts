@@ -63,7 +63,7 @@ softwarePill.addEventListener('mouseover', function () {
 	}
 })
 
-export const selectSoftwareCheckbox = () => {
+const selectSoftwareCheckbox = () => {
 	unselectProductCheckbox()
 	unselectOtherCheckbox()
 	unselectStaffCheckbox()
@@ -80,6 +80,7 @@ export const selectSoftwareCheckbox = () => {
 }
 
 export const unselectSoftwareCheckbox = () => {
+	if (!softwareCheckbox.checked) return
 	softwareCheckbox.checked = false
 	if (isLightThemed()) {
 		softwarePill.style.backgroundColor = colors.lightBackgroundColor

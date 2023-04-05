@@ -62,7 +62,7 @@ productPill.addEventListener('mouseover', function () {
 	}
 })
 
-export const selectProductCheckbox = () => {
+const selectProductCheckbox = () => {
 	unselectStaffCheckbox()
 	unselectSoftwareCheckbox()
 	unselectOtherCheckbox()
@@ -79,6 +79,7 @@ export const selectProductCheckbox = () => {
 }
 
 export const unselectProductCheckbox = () => {
+	if (!productCheckbox.checked) return
 	productCheckbox.checked = false
 	if (isLightThemed()) {
 		productPill.style.backgroundColor = colors.lightBackgroundColor

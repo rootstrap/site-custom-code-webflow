@@ -62,7 +62,7 @@ staffPill.addEventListener('mouseover', function () {
 	}
 })
 
-export const selectStaffCheckbox = () => {
+const selectStaffCheckbox = () => {
 	unselectProductCheckbox()
 	unselectOtherCheckbox()
 	unselectSoftwareCheckbox()
@@ -79,6 +79,7 @@ export const selectStaffCheckbox = () => {
 }
 
 export const unselectStaffCheckbox = () => {
+	if (!staffCheckbox.checked) return
 	staffCheckbox.checked = false
 	if (isLightThemed()) {
 		staffPill.style.backgroundColor = colors.lightBackgroundColor
