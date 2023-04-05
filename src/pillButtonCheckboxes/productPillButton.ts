@@ -1,4 +1,7 @@
 import { colors } from './colors'
+import { unselectOtherCheckbox } from './otherPillButton'
+import { unselectSoftwareCheckbox } from './softwarePillButton'
+import { unselectStaffCheckbox } from './staffPillButton'
 
 const productCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-product') as HTMLInputElement
 const productPill: HTMLElement = document.getElementById('pill-checkbox-product')
@@ -35,29 +38,13 @@ const productThemeObserver = new MutationObserver((mutationList: unknown, observ
 
 productThemeObserver.observe(productPill, { attributes: true })
 
-productCheckbox.addEventListener('change', function () {
-	if (this.checked) {
-		if (isLightThemed()) {
-			productPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			productPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			productPillLabel.style.color = colors.darkSelectedTextColor
-			productPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+productPill.addEventListener('click', () => {
+	if (!productCheckbox.checked) {
+		selectProductCheckbox()
 	} else {
-		if (isLightThemed()) {
-			productPill.style.backgroundColor = colors.lightBackgroundColor
-			productButtonHover.style.backgroundColor = colors.lightHoverColor
-			productPillLabel.style.color = colors.lightTextColor
-		} else {
-			productPill.style.backgroundColor = colors.darkBackgroundColor
-			productButtonHover.style.backgroundColor = colors.darkHoverColor
-			productPillLabel.style.color = colors.darkTextColor
-		}
+		unselectProductCheckbox()
 	}
-});
+})
 
 productPill.addEventListener('mouseover', function () {
 	if (productCheckbox.checked) {
@@ -74,3 +61,33 @@ productPill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+const selectProductCheckbox = () => {
+	unselectStaffCheckbox()
+	unselectSoftwareCheckbox()
+	unselectOtherCheckbox()
+	productCheckbox.checked = true
+	if (isLightThemed()) {
+		productPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		productButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		productPillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		productPillLabel.style.color = colors.darkSelectedTextColor
+		productPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		productButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectProductCheckbox = () => {
+	if (!productCheckbox.checked) return
+	productCheckbox.checked = false
+	if (isLightThemed()) {
+		productPill.style.backgroundColor = colors.lightBackgroundColor
+		productButtonHover.style.backgroundColor = colors.lightHoverColor
+		productPillLabel.style.color = colors.lightTextColor
+	} else {
+		productPill.style.backgroundColor = colors.darkBackgroundColor
+		productButtonHover.style.backgroundColor = colors.darkHoverColor
+		productPillLabel.style.color = colors.darkTextColor
+	}
+}

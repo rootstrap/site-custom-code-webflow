@@ -1,5 +1,9 @@
 import { hideSocialsCheckboxError } from "../formInputs/socialCheckboxGroup"
 import { colors } from "./colors"
+import { unselectFriendCheckbox } from "./friendPillButton"
+import { unselectGoogleCheckbox } from "./googlePillButton"
+import { unselectOtherSocialCheckbox } from "./otherSocialPillButton"
+import { unselectReferralCheckbox } from "./referralPillButton"
 
 const socialCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-social') as HTMLInputElement
 const socialPill: HTMLElement = document.getElementById('pill-checkbox-social')
@@ -36,28 +40,12 @@ const socialThemeObserver = new MutationObserver((mutationList: unknown, _observ
 
 socialThemeObserver.observe(socialPill, { attributes: true })
 
-socialCheckbox.addEventListener('change', function () {
+socialPill.addEventListener('click', function () {
 	hideSocialsCheckboxError()
-	if (this.checked) {
-		if (isLightThemed()) {
-			socialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			socialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			socialPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			socialPillLabel.style.color = colors.darkSelectedTextColor
-			socialPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			socialButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+	if (!socialCheckbox.checked) {
+		selectSocialCheckbox()
 	} else {
-		if (isLightThemed()) {
-			socialPill.style.backgroundColor = colors.lightBackgroundColor
-			socialButtonHover.style.backgroundColor = colors.lightHoverColor
-			socialPillLabel.style.color = colors.lightTextColor
-		} else {
-			socialPill.style.backgroundColor = colors.darkBackgroundColor
-			socialButtonHover.style.backgroundColor = colors.darkHoverColor
-			socialPillLabel.style.color = colors.darkTextColor
-		}
+		unselectSocialCheckbox()
 	}
 });
 
@@ -76,3 +64,34 @@ socialPill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+const selectSocialCheckbox = () => {
+	socialCheckbox.checked = true
+	unselectGoogleCheckbox()
+	unselectOtherSocialCheckbox()
+	unselectFriendCheckbox()
+	unselectReferralCheckbox()
+	if (isLightThemed()) {
+		socialPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		socialButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		socialPillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		socialPillLabel.style.color = colors.darkSelectedTextColor
+		socialPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		socialButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectSocialCheckbox = () => {
+	if (!socialCheckbox.checked) return
+	socialCheckbox.checked = false
+	if (isLightThemed()) {
+		socialPill.style.backgroundColor = colors.lightBackgroundColor
+		socialButtonHover.style.backgroundColor = colors.lightHoverColor
+		socialPillLabel.style.color = colors.lightTextColor
+	} else {
+		socialPill.style.backgroundColor = colors.darkBackgroundColor
+		socialButtonHover.style.backgroundColor = colors.darkHoverColor
+		socialPillLabel.style.color = colors.darkTextColor
+	}
+}

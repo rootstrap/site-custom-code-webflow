@@ -50,8 +50,16 @@ projectInput.addEventListener('input', () => {
 		hideProjectRequiredError()
 		const underlineWidth = Number(projectInputUnderline.style.width.substring(0, projectInputUnderline.style.width.length - 2))
 		if (underlineWidth < projectInputContainer.getBoundingClientRect().width) {
-			const fontSize = Number(getComputedStyle(projectInput).fontSize.substring(0, getComputedStyle(projectInput).fontSize.length - 2))
-			projectInputUnderline.style.width = `${projectInput.value.length * fontSize * 0.5}px`
+			const span = document.createElement('span')
+			span.style.fontSize = getComputedStyle(projectInput).fontSize
+			span.style.lineHeight = getComputedStyle(projectInput).lineHeight
+			span.style.fontFamily = getComputedStyle(projectInput).fontFamily
+			span.style.fontWeight = getComputedStyle(projectInput).fontWeight
+			span.innerText = projectInput.value
+			document.body.appendChild(span)
+			const width = span.offsetWidth
+			document.body.removeChild(span)
+			projectInputUnderline.style.width = `${width}px`
 		}
 	}
 })

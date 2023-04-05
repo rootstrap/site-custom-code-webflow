@@ -1,4 +1,7 @@
 import { colors } from "./colors"
+import { unselectProductCheckbox } from "./productPillButton"
+import { unselectSoftwareCheckbox } from "./softwarePillButton"
+import { unselectStaffCheckbox } from "./staffPillButton"
 
 const otherCheckbox: HTMLInputElement = document.getElementById('checkbox-pill-other') as HTMLInputElement
 const otherPill: HTMLElement = document.getElementById('pill-checkbox-other')
@@ -35,27 +38,11 @@ const otherThemeObserver = new MutationObserver((mutationList: unknown, observer
 
 otherThemeObserver.observe(otherPill, { attributes: true })
 
-otherCheckbox.addEventListener('change', function () {
-	if (this.checked) {
-		if (isLightThemed()) {
-			otherPill.style.backgroundColor = colors.lightSelectedBackgroundColor
-			otherButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
-			otherPillLabel.style.color = colors.lightSelectedTextColor
-		} else {
-			otherPillLabel.style.color = colors.darkSelectedTextColor
-			otherPill.style.backgroundColor = colors.darkSelectedBackgroundColor
-			otherButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
-		}
+otherPill.addEventListener('click', function () {
+	if (!otherCheckbox.checked) {
+		selectOtherCheckbox()
 	} else {
-		if (isLightThemed()) {
-			otherPill.style.backgroundColor = colors.lightBackgroundColor
-			otherButtonHover.style.backgroundColor = colors.lightHoverColor
-			otherPillLabel.style.color = colors.lightTextColor
-		} else {
-			otherPill.style.backgroundColor = colors.darkBackgroundColor
-			otherButtonHover.style.backgroundColor = colors.darkHoverColor
-			otherPillLabel.style.color = colors.darkTextColor
-		}
+		unselectOtherCheckbox()
 	}
 });
 
@@ -74,3 +61,33 @@ otherPill.addEventListener('mouseover', function () {
 		}
 	}
 })
+
+const selectOtherCheckbox = () => {
+	unselectProductCheckbox()
+	unselectSoftwareCheckbox()
+	unselectStaffCheckbox()
+	otherCheckbox.checked = true
+	if (isLightThemed()) {
+		otherPill.style.backgroundColor = colors.lightSelectedBackgroundColor
+		otherButtonHover.style.backgroundColor = colors.lightSelectedHoverColor
+		otherPillLabel.style.color = colors.lightSelectedTextColor
+	} else {
+		otherPillLabel.style.color = colors.darkSelectedTextColor
+		otherPill.style.backgroundColor = colors.darkSelectedBackgroundColor
+		otherButtonHover.style.backgroundColor = colors.darkSelectedHoverColor
+	}
+}
+
+export const unselectOtherCheckbox = () => {
+	if (!otherCheckbox.checked) return
+	otherCheckbox.checked = false
+	if (isLightThemed()) {
+		otherPill.style.backgroundColor = colors.lightBackgroundColor
+		otherButtonHover.style.backgroundColor = colors.lightHoverColor
+		otherPillLabel.style.color = colors.lightTextColor
+	} else {
+		otherPill.style.backgroundColor = colors.darkBackgroundColor
+		otherButtonHover.style.backgroundColor = colors.darkHoverColor
+		otherPillLabel.style.color = colors.darkTextColor
+	}
+}

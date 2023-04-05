@@ -51,8 +51,16 @@ nameInput.addEventListener('input', () => {
         hideNameRequiredError()
         const underlineWidth = Number(nameInputUnderline.style.width.substring(0, nameInputUnderline.style.width.length - 2))
         if (underlineWidth < nameInputContainer.getBoundingClientRect().width) {
-            const fontSize = Number(getComputedStyle(nameInput).fontSize.substring(0, getComputedStyle(nameInput).fontSize.length - 2))
-            nameInputUnderline.style.width = `${nameInput.value.length * fontSize * 0.5}px`
+            const span = document.createElement('span')
+            span.style.fontSize = getComputedStyle(nameInput).fontSize
+            span.style.lineHeight = getComputedStyle(nameInput).lineHeight
+            span.style.fontFamily = getComputedStyle(nameInput).fontFamily
+            span.style.fontWeight = getComputedStyle(nameInput).fontWeight
+            span.innerText = nameInput.value
+            document.body.appendChild(span)
+            const width = span.offsetWidth
+            document.body.removeChild(span)
+            nameInputUnderline.style.width = `${width}px`
         }
     }
 
