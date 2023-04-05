@@ -80,8 +80,16 @@ emailInput.addEventListener('input', () => {
 		hideEmailRequiredError()
 		const underlineWidth = Number(emailInputUnderline.style.width.substring(0, emailInputUnderline.style.width.length - 2))
 		if (underlineWidth < emailInputContainer.getBoundingClientRect().width) {
-			const fontSize = Number(getComputedStyle(emailInput).fontSize.substring(0, getComputedStyle(emailInput).fontSize.length - 2))
-			emailInputUnderline.style.width = `${emailInput.value.length * fontSize * 0.55}px`
+			const span = document.createElement('span')
+			span.style.fontSize = getComputedStyle(emailInput).fontSize
+			span.style.lineHeight = getComputedStyle(emailInput).lineHeight
+			span.style.fontFamily = getComputedStyle(emailInput).fontFamily
+			span.style.fontWeight = getComputedStyle(emailInput).fontWeight
+			span.innerText = emailInput.value
+			document.body.appendChild(span)
+			const width = span.offsetWidth
+			document.body.removeChild(span)
+			emailInputUnderline.style.width = `${width}px`
 		}
 		if (!isEmail(emailInput.value)) {
 			displayEmailFormatError()
