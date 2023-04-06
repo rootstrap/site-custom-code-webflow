@@ -9,6 +9,15 @@ import {
 } from "../formInputs/emailInput";
 import { isEmail } from "class-validator";
 import { displaySocialCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
+import { displayCaptchaRequiredError, hideCaptchaRequiredError, isCaptchaErrorDisplayed } from "../formInputs/captcha";
+
+const captchaWrapper: HTMLElement = document.querySelector('.c-captcha-wrapper')
+const script = document.createElement('script');
+script.src = 'https://www.google.com/recaptcha/api.js';
+script.async = true;
+script.defer = true;
+document.body.appendChild(script);
+
 
 const submitButton: HTMLFormElement = document.querySelector('#submit-button')
 const checkboxes: HTMLInputElement[] = [
@@ -21,6 +30,14 @@ const checkboxes: HTMLInputElement[] = [
 
 submitButton.addEventListener('click', (event: Event) => {
     const headerOffset = 150
+
+    //@ts-ignore
+    if (!window.grecaptcha.getResponse()) {
+        displayCaptchaRequiredError()
+        setTimeout(() => {
+            hideCaptchaRequiredError()
+        }, 4000)
+    }
 
     if (emailInput.value === "") {
         displayEmailRequiredError()
@@ -71,6 +88,17 @@ submitButton.addEventListener('click', (event: Event) => {
     if (isSocialsCheckboxErrorDisplayed) {
         const socialsCheckboxPosition = socialsCheckboxGroup.getBoundingClientRect().top
         const offsetPosition = socialsCheckboxPosition + window.pageYOffset - headerOffset;
+        event.preventDefault()
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        })
+        return;
+    }
+
+    if (isCaptchaErrorDisplayed) {
+        const captchaPosition = captchaWrapper.getBoundingClientRect().top
+        const offsetPosition = captchaPosition + window.pageYOffset - headerOffset
         event.preventDefault()
         window.scrollTo({
             top: offsetPosition,
