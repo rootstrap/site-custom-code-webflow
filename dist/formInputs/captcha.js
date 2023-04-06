@@ -1,0 +1,2 @@
+(()=>{var t=document.querySelector(".cc-captcha-required-error"),a=document.querySelector(".c-captcha-wrapper"),r=document.querySelector("#submit-button"),e=!1,o=getComputedStyle(r),c=Number(o.marginTop.substring(0,o.marginTop.length-2)),n=getComputedStyle(t),l=Number(n.lineHeight.substring(0,n.lineHeight.length-2)),s=()=>{e||(a.style.borderColor="#cb0b0b",t.style.display="block",r.style.marginTop=`${c-l}px`,e=!0)},p=()=>{a.style.borderColor="transparent",t.style.display="none",r.style.marginTop=`${c}px`,e=!1};})();
+//# sourceMappingURL=captcha.js.map
