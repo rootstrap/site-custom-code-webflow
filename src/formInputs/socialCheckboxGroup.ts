@@ -25,10 +25,10 @@ export const displaySocialCheckboxError = () => {
 }
 
 export const hideSocialsCheckboxError = () => {
+    isSocialsCheckboxErrorDisplayed = false
     socialsRequiredErrorMessage.style.display = 'none'
     for (let i = 0; i < pills.length; i++) {
         pills[i].style.border = '1px solid #9e9e9e'
     }
     socialsCheckboxGroup.style.marginTop = `${socialsCheckboxGroupMarginTop}px`
-    isSocialsCheckboxErrorDisplayed = false
 }

@@ -8,7 +8,7 @@ import {
     displayEmailFormatError
 } from "../formInputs/emailInput";
 import { isEmail } from "class-validator";
-import { displaySocialCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
+import { displaySocialCheckboxError, hideSocialsCheckboxError, isSocialsCheckboxErrorDisplayed, socialsCheckboxGroup } from "../formInputs/socialCheckboxGroup";
 import { displayCaptchaRequiredError, hideCaptchaRequiredError, isCaptchaErrorDisplayed } from "../formInputs/captcha";
 
 const captchaWrapper: HTMLElement = document.querySelector('.c-captcha-wrapper')
@@ -50,6 +50,8 @@ submitButton.addEventListener('click', (event: Event) => {
 
     if (checkboxes.every(ch => !ch.checked)) {
         displaySocialCheckboxError()
+    } else {
+        hideSocialsCheckboxError()
     }
 
     if (isProjectErrorDisplayed) {
@@ -60,7 +62,7 @@ submitButton.addEventListener('click', (event: Event) => {
             top: offsetPosition,
             behavior: 'smooth'
         })
-        return;
+        return false;
     }
 
     if (isNameErrorDisplayed) {
@@ -71,7 +73,7 @@ submitButton.addEventListener('click', (event: Event) => {
             top: offsetPosition,
             behavior: 'smooth'
         })
-        return;
+        return false;
     }
 
     if (isEmailFormatErrorDisplayed || isEmailRequiredErrorDisplayed) {
@@ -82,7 +84,7 @@ submitButton.addEventListener('click', (event: Event) => {
             top: offsetPosition,
             behavior: 'smooth'
         })
-        return;
+        return false;
     }
 
     if (isSocialsCheckboxErrorDisplayed) {
@@ -93,7 +95,7 @@ submitButton.addEventListener('click', (event: Event) => {
             top: offsetPosition,
             behavior: 'smooth'
         })
-        return;
+        return false;
     }
 
     if (isCaptchaErrorDisplayed) {
@@ -104,6 +106,6 @@ submitButton.addEventListener('click', (event: Event) => {
             top: offsetPosition,
             behavior: 'smooth'
         })
-        return;
+        return false;
     }
 })
