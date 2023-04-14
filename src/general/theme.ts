@@ -1,3 +1,5 @@
+import { addCookie, removeCookie } from "../utils/cookies";
+
 enum Theme {
   LIGHT = "__light",
   DARK = "__dark",
@@ -24,13 +26,14 @@ function setThemeSwitchState() {
 }
 
 function isDarkThemeSelected() {
- return document.cookie.match(/theme=__dark/i) != null;
+  return document.cookie.match(/theme=__dark/i) != null;
 }
 
 function toggleTheme() {
   const isDarkMode = isDarkThemeSelected();
   applyTheme(isDarkMode ? Theme.LIGHT : Theme.DARK);
-  document.cookie = `theme=${isDarkMode ? Theme.LIGHT : Theme.DARK}`;
+  removeCookie('theme');
+  addCookie('theme', isDarkMode ? Theme.LIGHT : Theme.DARK);
 }
 
 (function() {

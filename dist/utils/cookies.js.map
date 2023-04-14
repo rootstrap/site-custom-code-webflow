@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/utils/cookies.ts"],
+  "sourcesContent": ["export function removeCookie(name: string) {\n  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;\n}\n\nexport function addCookie(name: string, value = \"\") {\n  document.cookie = `${name}=${value}`;\n}"],
+  "mappings": "MAAO,SAASA,EAAaC,EAAc,CACzC,SAAS,OAAS,GAAGA,oDACvB,CAEO,SAASC,EAAUD,EAAcE,EAAQ,GAAI,CAClD,SAAS,OAAS,GAAGF,KAAQE,GAC/B",
+  "names": ["removeCookie", "name", "addCookie", "value"]
+}
