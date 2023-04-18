@@ -3,5 +3,5 @@ export function removeCookie(name: string) {
 }
 
 export function addCookie(name: string, value = "") {
-  document.cookie = `${name}=${value}`;
+  document.cookie = `${name}=${value}; path=/;`;
 }
