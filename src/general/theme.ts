@@ -22,6 +22,7 @@ function setThemeFromCookie() {
 
 function setThemeSwitchState() {
   const themeCheckbox = document.getElementById('toggleTheme') as HTMLInputElement;
+  if(themeCheckbox === null) return;
   themeCheckbox.checked = isDarkThemeSelected();
 }
 
@@ -40,16 +41,22 @@ function toggleTheme() {
   setThemeFromCookie();
   setThemeSwitchState();
   const themeCheckbox = document.getElementById('toggleTheme') as HTMLInputElement;
+  if(themeCheckbox === null) return;
   themeCheckbox.onchange=toggleTheme;
 })();
-  
+
 // set transition properties AFTER page has loaded
-window.onload = function () {
+window.onload = function() {
   const themeRootElement = document.getElementById("theme-root") as HTMLElement;
   themeRootElement.style.transitionProperty  = "color, background-color";
   themeRootElement.style.transitionDuration = "300ms";
   themeRootElement.style.transitionTimingFunction = "ease";
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.body.style.visibility = "visible";
+});
+
 // setup intersection observer to update styles when theme switcher overlaps with color sections
 const themeSwitcherElement = document.getElementById("themeSwitcher") as HTMLElement;
 // keeps track of sections that have been intersected (LIFO).
