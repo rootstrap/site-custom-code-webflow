@@ -1,2 +1,2 @@
-(()=>{var n=document.getElementById("blog-hero"),e=document.getElementById("blog-header"),s=new IntersectionObserver(l,{root:null,threshold:0});function l(t){let{isIntersecting:o}=t[0];o?e.classList.add("cc-yellow-header"):e.classList.remove("cc-yellow-header")}s.observe(n);})();
+(()=>{var s=document.getElementById("blog-hero"),l=document.getElementById("blog-header"),o=document.querySelectorAll(".cc-yellow-header"),r=new IntersectionObserver(n,{root:null,threshold:0});function n(t){let{isIntersecting:c}=t[0];c?(l.classList.add("cc-yellow-header"),o.forEach(e=>{e.classList.add("cc-yellow-header")})):(l.classList.remove("cc-yellow-header"),o.forEach(e=>{e.classList.remove("cc-yellow-header")}))}r.observe(s);})();
 //# sourceMappingURL=blog.js.map
