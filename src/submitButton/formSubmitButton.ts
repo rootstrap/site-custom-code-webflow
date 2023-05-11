@@ -167,7 +167,7 @@ submitButton?.addEventListener('click', async (event: Event) => {
     });
     return false;
   }
-  debugger
+
   if(submitButtonLabel) submitButtonLabel.innerHTML = 'Please wait...';
 
 });
