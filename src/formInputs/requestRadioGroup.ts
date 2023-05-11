@@ -34,7 +34,6 @@ const { requestRadioGroupMarginTop, requestRequiredErrorLineHeight } =
   calculateStyles();
 
 export const displayRequestRequiredError = () => {
-  debugger;
   if (!requestRadioGroup) return;
   if (!requestRequiredErrorMessage) return;
   requestRadioGroup.style.marginTop = `${

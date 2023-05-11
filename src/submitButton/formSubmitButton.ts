@@ -44,6 +44,10 @@ document.body.appendChild(script);
 
 const submitButton: HTMLFormElement | null =
   document.querySelector('#submit-button');
+const submitButtonLabel: HTMLElement | null =
+    document.querySelector('#submit-button-label');
+const defaultSubmitButtonLabel = submitButtonLabel?.innerHTML;
+
 const requestRadios: HTMLInputElement[] = Array.from(
   document.querySelectorAll('.cc-request-radio-group input[type="radio"]')
 );
@@ -59,7 +63,7 @@ attributionRadios.forEach((radioInput) => {
   radioInput.addEventListener('change', hideAttributionRequiredError);
 });
 
-submitButton?.addEventListener('click', (event: Event) => {
+submitButton?.addEventListener('click', async (event: Event) => {
   const headerOffset = 150;
 
   //@ts-ignore
@@ -80,7 +84,6 @@ submitButton?.addEventListener('click', (event: Event) => {
   if (!projectInput.value) displayProjectRequiredError();
 
   if (requestRadios.every((ch) => !ch.checked)) {
-    debugger;
     displayRequestRequiredError();
   } else {
     hideRequestRequiredError();
@@ -164,4 +167,17 @@ submitButton?.addEventListener('click', (event: Event) => {
     });
     return false;
   }
+  debugger
+  if(submitButtonLabel) submitButtonLabel.innerHTML = 'Please wait...';
+
+});
+
+const contactForm: HTMLFormElement | null = document.getElementById("contact-form") as HTMLFormElement;
+
+contactForm?.addEventListener('success', function(event) {
+  if(submitButtonLabel) submitButtonLabel.innerHTML = defaultSubmitButtonLabel || '';
+});
+
+contactForm?.addEventListener('error', function(event) {
+  if(submitButtonLabel) submitButtonLabel.innerHTML = defaultSubmitButtonLabel || '';
 });
