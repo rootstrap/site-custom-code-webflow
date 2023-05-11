@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/pillButtonCheckboxes/colors.ts"],
-  "sourcesContent": ["export const colors = {\n\tlightHoverColor: \"#ffc83f\",\n\tdarkHoverColor: \"#ffc83f\",\n\tlightSelectedHoverColor: \"#FFC83F\",\n\tdarkSelectedHoverColor: \"#FFC83F\",\n\tlightBackgroundColor: 'transparent',\n\tdarkBackgroundColor: 'transparent',\n\tlightSelectedBackgroundColor: '#1b1b1b',\n\tdarkSelectedBackgroundColor: \"#FFB90A\",\n\tlightTextColor: \"#1b1b1b\",\n\tlightSelectedTextColor: \"#FFFFFF\",\n\tdarkTextColor: \"#FFFFFF\",\n\tdarkSelectedTextColor: \"#0A0A0A\",\n}"],
-  "mappings": "MAAO,IAAMA,EAAS,CACrB,gBAAiB,UACjB,eAAgB,UAChB,wBAAyB,UACzB,uBAAwB,UACxB,qBAAsB,cACtB,oBAAqB,cACrB,6BAA8B,UAC9B,4BAA6B,UAC7B,eAAgB,UAChB,uBAAwB,UACxB,cAAe,UACf,sBAAuB,SACxB",
-  "names": ["colors"]
-}

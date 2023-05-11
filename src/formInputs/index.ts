@@ -1,5 +1,6 @@
-import './projectInput'
-import './emailInput'
-import './nameInput'
-import './socialCheckboxGroup'
-import './captcha'
+import './projectInput';
+import './emailInput';
+import './nameInput';
+import './requestRadioGroup';
+import './attributionRadioGroup';
+import './captcha';
