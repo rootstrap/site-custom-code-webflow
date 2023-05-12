@@ -1,6 +1,4 @@
 
-var Webflow = Webflow || [];
-  
 const mobileBreakpoint = "480px";
 const tabletBreakpoint = "768px";
 const desktopBreakpoint = "992px";
@@ -53,14 +51,11 @@ isFlippedMobileOrBiggerMQ.addEventListener("change", handleBreakpoinChange);
 isTabletOrBiggerMQ.addEventListener("change", handleBreakpoinChange);
 isDesktopOrBiggerMQ.addEventListener("change", handleBreakpoinChange);
 
-
-Webflow.push(function () {
-    $('[menu="open"]').on('click', function () {
-      disableScroll();
-      setThemeSwitcherVisibility("visible");
-    });
-    $('[menu="close"]').on('click', function () {
-      enableScroll();
-      setThemeSwitcherVisibility("auto");
-    });
+$('[menu="open"]').on('click', function () {
+  disableScroll();
+  setThemeSwitcherVisibility("visible");
+});
+$('[menu="close"]').on('click', function () {
+  enableScroll();
+  setThemeSwitcherVisibility("auto");
 });
