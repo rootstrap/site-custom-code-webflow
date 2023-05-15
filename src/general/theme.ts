@@ -10,8 +10,9 @@ function applyTheme(themeId: Theme) {
   const oppositeThemeId = themeId === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
   const themedElementsQuery = `*[class*='${oppositeThemeId}']`;
   const themedElements = [...document.querySelectorAll(themedElementsQuery)];
+  const reaplaceRegex = new RegExp(oppositeThemeId, "g");
   themedElements.forEach(element => {
-    element.className = element.className.replace(oppositeThemeId, themeId);
+    element.className = element.className.replace(reaplaceRegex, themeId);
   });
 }
 
