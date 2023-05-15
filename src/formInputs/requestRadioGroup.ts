@@ -14,7 +14,6 @@ const requestRequiredErrorMessage: HTMLElement | null = document.querySelector(
 );
 
 export const displayRequestRequiredError = () => {
-
   if (!requestRequiredErrorMessage) return;
   requestRequiredErrorMessage.style.display = 'block';
   for (let i = 0; i < lightPills.length; i++) {
@@ -31,9 +30,11 @@ export const hideRequestRequiredError = () => {
   isRequestRequiredErrorDisplayed = false;
   requestRequiredErrorMessage.style.display = 'none';
   for (let i = 0; i < lightPills.length; i++) {
-    lightPills[i].classList.remove('cc-pill-m--error__light');
+    lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
-  for (let i = 0; i <   darkPills.length; i++) {
-    darkPills[i].classList.remove('cc-pill-m--error__dark');
+  for (let i = 0; i < darkPills.length; i++) {
+    lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
 };

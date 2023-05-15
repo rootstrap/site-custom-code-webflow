@@ -14,7 +14,6 @@ const attributionRequiredErrorMessage: HTMLElement | null =
 export const displayAttributionRequiredError = () => {
   if (!attributionRequiredErrorMessage) return;
   attributionRequiredErrorMessage.style.display = 'block';
-  debugger
   for (let i = 0; i < lightPills.length; i++) {
     lightPills[i].classList.add('cc-pill-m--error__light');
   }
@@ -28,11 +27,12 @@ export const hideAttributionRequiredError = () => {
   if (!attributionRequiredErrorMessage) return;
   isAttributionRequiredErrorDisplayed = false;
   attributionRequiredErrorMessage.style.display = 'none';
-  debugger
   for (let i = 0; i < lightPills.length; i++) {
-    lightPills[i].classList.remove('cc-pill-m--error__light');
+    lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
-  for (let i = 0; i <   darkPills.length; i++) {
-    darkPills[i].classList.remove('cc-pill-m--error__dark');
+  for (let i = 0; i < darkPills.length; i++) {
+    lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
 };
