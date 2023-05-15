@@ -17,10 +17,10 @@ export const displayRequestRequiredError = () => {
   if (!requestRequiredErrorMessage) return;
   requestRequiredErrorMessage.style.display = 'block';
   for (let i = 0; i < lightPills.length; i++) {
-    lightPills[i].classList.add('cc-pill-m--error__light');
+    lightPills[i]?.classList.add('cc-pill-m--error__light');
   }
   for (let i = 0; i < darkPills.length; i++) {
-    darkPills[i].classList.add('cc-pill-m--error__dark');
+    darkPills[i]?.classList.add('cc-pill-m--error__dark');
   }
   isRequestRequiredErrorDisplayed = true;
 };
@@ -31,10 +31,14 @@ export const hideRequestRequiredError = () => {
   requestRequiredErrorMessage.style.display = 'none';
   for (let i = 0; i < lightPills.length; i++) {
     lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    lightPills[i]?.classList.remove('cc-pill-m--error__dark');
+    darkPills[i]?.classList.remove('cc-pill-m--error__light');
     darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
   for (let i = 0; i < darkPills.length; i++) {
     lightPills[i]?.classList.remove('cc-pill-m--error__light');
+    lightPills[i]?.classList.remove('cc-pill-m--error__dark');
+    darkPills[i]?.classList.remove('cc-pill-m--error__light');
     darkPills[i]?.classList.remove('cc-pill-m--error__dark');
   }
 };
