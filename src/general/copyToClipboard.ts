@@ -1,5 +1,5 @@
-const emailDefault: HTMLElement = document.querySelector('.cc-footer-email-default')
-const emailCopied: HTMLElement = document.querySelector('.cc-footer-email-copied')
+const emailDefault: HTMLElement | null = document.querySelector('.cc-footer-email-default')
+const emailCopied: HTMLElement | null = document.querySelector('.cc-footer-email-copied')
 
 function fadeInElement(element: HTMLElement) {
     element.style.opacity = '0'
@@ -26,11 +26,13 @@ function fadeOutElement(elementOut: HTMLElement, elementIn: HTMLElement) {
     }, 25)
 }
 
-emailDefault.addEventListener('click', () => {
+emailDefault?.addEventListener('click', () => {
     navigator.clipboard.writeText(emailDefault.innerText).then(() => {
+      if(emailCopied) {
         fadeOutElement(emailDefault, emailCopied)
         setTimeout(() => {
             fadeOutElement(emailCopied, emailDefault)
         }, 1500)
+      }
     })
 })
