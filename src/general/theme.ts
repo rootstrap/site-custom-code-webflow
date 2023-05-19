@@ -52,10 +52,16 @@ window.onload = function() {
   themeRootElement.style.transitionProperty  = "color, background-color";
   themeRootElement.style.transitionDuration = "300ms";
   themeRootElement.style.transitionTimingFunction = "ease";
+  const [navBar] = document.querySelectorAll(".c-header-wrapper__light, .c-header-wrapper__dark");
+  if(navBar) {
+    navBar.style.transitionProperty  = "background-color";
+    navBar.style.transitionDuration = "300ms";
+    navBar.style.transitionTimingFunction = "ease";
+  }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-  document.body.style.visibility = "visible";
+$(document).ready(function() {
+  document.body.style.opacity = '1';
 });
 
 // setup intersection observer to update styles when theme switcher overlaps with color sections
